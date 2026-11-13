@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+/**
+ * Messaging service to log token and message
+ */
 public class MessagingService extends FirebaseMessagingService {
 
     @Override

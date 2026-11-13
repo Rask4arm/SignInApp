@@ -11,8 +11,20 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.signinapp.R;
 
+
+/**
+ * Activity that is displayed after someone has logged inn.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Runs when activity is started
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

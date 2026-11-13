@@ -33,6 +33,9 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+/**
+ * Activity for signing up
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
@@ -41,6 +44,14 @@ public class SignUpActivity extends AppCompatActivity {
 
     private String encodeImage;
 
+    /**
+     * Runs when created
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +62,9 @@ public class SignUpActivity extends AppCompatActivity {
         setListeners();
     }
 
+    /**
+     * Listens for buttons
+     */
     private void setListeners() {
         binding.textSignIn.setOnClickListener(v -> onBackPressed());
 
@@ -68,12 +82,18 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-
-
+    /**
+     * Displays toast
+     *
+     * @param message String that you want to show as toast
+     */
     private void showToast(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Signs up user, creates user in database and redirects to Main activity if successfull.
+     */
     private void SignUp(){
         //check Loading
         loading(true);
@@ -108,6 +128,13 @@ public class SignUpActivity extends AppCompatActivity {
         //Post to Firebase*
     }
 
+    /**
+     * Method for encoding image.
+     *
+     * @param bitmap takes the bitmap of the image
+     *
+     * @return the image encoded into a string
+     */
     private String encodeImage(Bitmap bitmap){
         int previewWidth = 150;
         int previewHeight = bitmap.getHeight()*previewWidth / bitmap.getWidth();
@@ -122,6 +149,9 @@ public class SignUpActivity extends AppCompatActivity {
         return Base64.encodeToString(bytes,Base64.DEFAULT);
     }
 
+    /**
+     * Method for picking image
+     */
     private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result ->{
                 if (result.getResultCode() == RESULT_OK){
@@ -141,6 +171,11 @@ public class SignUpActivity extends AppCompatActivity {
             }
     );
 
+    /**
+     * Checks if user inputs are valid
+     *
+     * @return false if not valid, true if valid
+     */
     private Boolean isValidateSignUpDetails(){
         if (binding.inputName.getText().toString().trim().isEmpty()){
             showToast("Please Enter your Name");
@@ -166,6 +201,11 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Show loading graphic
+     *
+     * @param isLoading a boolean to whether app is loading or not.
+     */
     private void loading(Boolean isLoading){
         if(isLoading){
             binding.buttonSignUp.setVisibility(View.INVISIBLE);

@@ -3,6 +3,9 @@ package com.example.signinapp.utilites;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * Used by the activities to set and get constants.
+ */
 public class PreferenceManager {
 
     private final SharedPreferences sharedPreferences;

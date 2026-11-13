@@ -22,6 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
+/**
+ * Activity for signing in
+ */
+
 public class SignInActivity extends AppCompatActivity {
 
     private ActivitySignInBinding binding;
@@ -29,6 +33,14 @@ public class SignInActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
 
 
+    /**
+     * Runs when created
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +51,9 @@ public class SignInActivity extends AppCompatActivity {
         setListeners();
     }
 
+    /**
+     * Listens for buttons
+     */
     private void setListeners() {
         binding.textCreateNewAccount.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), SignUpActivity.class)));
@@ -50,6 +65,9 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Signs in user, checks if the user exists and redirects to Main activity if so.
+     */
     private void SignIn() {
         loading(true);
 
@@ -80,6 +98,11 @@ public class SignInActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Show loading graphic
+     *
+     * @param isLoading a boolean to whether app is loading or not.
+     */
     private void loading(Boolean isLoading){
         if(isLoading){
             binding.buttonSignIn.setVisibility(View.INVISIBLE);
@@ -90,6 +113,11 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Checks if user inputs are valid
+     *
+     * @return false if not valid, true if valid
+     */
     private boolean isValidateSignUpDetails() {
         if (binding.inputEmail.getText().toString().trim().isEmpty()) {
             showToast("Please enter your email");
@@ -103,6 +131,11 @@ public class SignInActivity extends AppCompatActivity {
         } else {return true;}
     }
 
+    /**
+     * Displays toast
+     *
+     * @param message String that you want to show as toast
+     */
     private void showToast(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
